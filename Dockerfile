@@ -14,4 +14,4 @@ RUN cd Android/Sdk/tools/bin && ./sdkmanager "build-tools;30.0.3" "platform-tool
 RUN git clone https://github.com/flutter/flutter.git
 RUN cd flutter && git checkout beta
 ENV PATH "$PATH:/home/developer/flutter/bin"# Run basic check to download Dark SDK
-RUN flutter doctor
+RUN flutter doctor -v
