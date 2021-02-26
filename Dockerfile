@@ -13,5 +13,5 @@ RUN cd Android/Sdk/cmdline-tools/tools/bin && yes | ./sdkmanager --licenses
 RUN cd Android/Sdk/cmdline-tools/tools/bin && ./sdkmanager "build-tools;30.0.3" "platform-tools" "platforms;android-30" "sources;android-30"
 RUN git clone https://github.com/flutter/flutter.git
 RUN cd flutter && git checkout beta
-ENV PATH "$PATH:/home/developer/flutter/bin"
+ENV PATH "$PATH:/home/developer/flutter/bin:/home/developer/flutter/bin/cache/dart-sdk/bin"
 RUN flutter doctor -v
