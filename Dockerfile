@@ -21,6 +21,7 @@ RUN java -version
 
 # USER
 RUN useradd -ms /bin/bash developer
+RUN usermod -aG sudo developer
 USER developer
 WORKDIR $HOME
 
