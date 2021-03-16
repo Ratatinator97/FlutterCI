@@ -19,6 +19,7 @@ RUN apt update
 RUN apt install -y curl git unzip xz-utils zip libglu1-mesa openjdk-8-jdk wget build-essential
 RUN java -version
 RUN echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config
+RUN cat /etc/ssh/ssh_config
 
 # USER
 RUN useradd -ms /bin/bash developer
