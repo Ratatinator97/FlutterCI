@@ -45,4 +45,5 @@ RUN wget --quiet --output-document=flutter.tar.xz https://storage.googleapis.com
 RUN tar xf flutter.tar.xz -C $(dirname ${FLUTTER_HOME})
 RUN rm flutter.tar.xz
 RUN flutter doctor -v
+RUN cat /etc/ssh/ssh_config
 
