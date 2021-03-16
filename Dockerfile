@@ -1,22 +1,29 @@
 FROM ubuntu:20.10
 
 # ENV
+ENV HOME=/home/developer
 ENV FLUTTER_CHANNEL=beta
 ENV FLUTTER_VERSION=1.26.0-17.6.pre
 ENV ANDROID_TOOLS=4333796
 
 # PATH
-ENV FLUTTER_HOME=/flutter
-ENV ANDROID_HOME=/android
-ENV TOOLS_HOME=/tools
+ENV FLUTTER_HOME=${HOME}/flutter
+ENV ANDROID_HOME=${HOME}/android
+ENV TOOLS_HOME=${ANDROID_HOME}/tools
 ENV PATH=${ANDROID_HOME}:${ANDROID_HOME}/emulator:${TOOLS_HOME}:${TOOLS_HOME}/bin:${ANDROID_HOME}/platform-tools:${PATH}
 ENV PATH=${FLUTTER_HOME}/bin:${FLUTTER_HOME}/bin/cache/dart-sdk/bin:${PATH}
-ENV PATH=/.pub-cache/bin:$PATH
+ENV PATH=$HOME/.pub-cache/bin:$PATH
 
 # PREREQUISITES
 RUN apt update 
 RUN apt install -y curl git unzip xz-utils zip libglu1-mesa openjdk-8-jdk wget build-essential
 RUN java -version
+
+# USER
+RUN useradd -ms /bin/bash developer
+RUN usermod -aG sudo developer
+USER developer
+WORKDIR $HOME
 
 # ANDROID
 RUN mkdir -p $ANDROID_HOME
@@ -36,3 +43,4 @@ RUN wget --quiet --output-document=flutter.tar.xz https://storage.googleapis.com
 RUN tar xf flutter.tar.xz -C $(dirname ${FLUTTER_HOME})
 RUN rm flutter.tar.xz
 RUN flutter doctor -v
+RUN echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config
