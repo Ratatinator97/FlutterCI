@@ -18,6 +18,7 @@ ENV PATH=$HOME/.pub-cache/bin:$PATH
 RUN apt update 
 RUN apt install -y curl git unzip xz-utils zip libglu1-mesa openjdk-8-jdk wget build-essential
 RUN java -version
+RUN echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config
 
 # USER
 RUN useradd -ms /bin/bash developer
@@ -43,4 +44,4 @@ RUN wget --quiet --output-document=flutter.tar.xz https://storage.googleapis.com
 RUN tar xf flutter.tar.xz -C $(dirname ${FLUTTER_HOME})
 RUN rm flutter.tar.xz
 RUN flutter doctor -v
-RUN echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config
+
