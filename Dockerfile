@@ -16,7 +16,7 @@ ENV PATH=$HOME/.pub-cache/bin:$PATH
 
 # PREREQUISITES
 RUN apt update 
-RUN apt install -y curl git unzip xz-utils zip libglu1-mesa openjdk-8-jdk wget build-essential
+RUN apt install -y curl git unzip xz-utils zip libglu1-mesa openjdk-8-jdk wget build-essential lcov
 RUN java -version
 RUN echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config
 RUN cat /etc/ssh/ssh_config
